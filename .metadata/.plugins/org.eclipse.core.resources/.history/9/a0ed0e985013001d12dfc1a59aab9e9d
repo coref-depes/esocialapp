@@ -1,0 +1,31 @@
+package br.gov.camara.esocial.service;
+
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import br.gov.camara.esocial.model.sigesp.SigHistoricoBeneficioPC;
+import br.gov.camara.esocial.repository.sigesp.SigHistoricoBeneficioPCRepository;
+
+@Service
+public class SigHistoricoBeneficioPCService {
+	
+	private List<SigHistoricoBeneficioPC> histbeneficiopc;
+	
+	@Autowired
+	private SigHistoricoBeneficioPCRepository histbeneficiopcdao;
+
+	public List<SigHistoricoBeneficioPC> cadastroInicial(LocalDate inicio, String codgrupo){
+		histbeneficiopc = new ArrayList<SigHistoricoBeneficioPC>();
+		System.out.println(histbeneficiopc.size());
+	//	histbeneficiopc = histbeneficiopcdao.findCadastroInicial(inicio, codgrupo);
+	//	System.out.println(histbeneficiopc.size());
+		return histbeneficiopc;		
+	}
+	
+	
+
+}

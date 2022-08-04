@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+
+
+<head>
+<title>Sipes</title>
+
+<meta charset="UTF-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+<meta name="description" content="" />
+<meta name="author" content="" />
+<link rel="icon" href="/image/iconeCD.png" />
+
+<!-- Bootstrap core CSS -->
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+	integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+	crossorigin="anonymous">
+
+<link href="/webjars/open-iconic/font/css/open-iconic-bootstrap.min.css"
+	rel="stylesheet" />
+
+
+ <link href="../../dist/css/bootstrap.min.css" rel="stylesheet">
+
+<!-- Custom styles for this template -->
+<!-- Bootstrap core CSS -->
+<link th:href="@{/css/bootstrap.min.css}" rel="stylesheet" />
+	 	<!--link th:href="@{/webjars/open-iconic/font/css/open-iconic-
+	 	bootstrap.min.css}" rel="stylesheet" /-->
+
+	
+	<!-- Custom styles for this template -->
+	<link th:href="@{/css/estilosMenu.css}" rel="stylesheet" />
+
+
+
+</head>
+
+<body>
+	<div class="container-fluid" >
+<h3 >E-SOCIAL CÂMARA DOS DEPUTADOS</h3>
+          <p>Ambiente de testes para implantação do E-SOCIAL na Câmara dos Deputados</p>
+
+	</div>
+
+	
+
+
+<main role="main">
+
+
+
+	<section class="jumbotron text-center">
+	
+	<div class="card-header">
+		 <h2>GERAÇÃO DE CHAVES AVULSAS PARA EVENTOS NÃO PERIÓDICOS </h2>
+	</div>
+	<p>
+	 <div class="row col-md-10 text-center border-info ">
+
+     <div class="card border-info col-8">
+     <p>
+		<div class="card-border " style="background-color: rgb(64, 128, 128); ">
+		<p>
+		  <p><strong class="text-white" >CADASTRAMENTO INICIAL</strong></p>  
+		</div>
+		<p>
+		<div class="nav justify-content-left"   style="background-color: #e3f2fd; "> 
+         <div class="row col-md-8  align-items-center justify-content-start"> 
+          <p>
+         </div>
+          <div class="row col-md-12  align-items-left justify-content-start">  
+ 
+
+  			<div class="form-group col-md-3"> 
+            	<a class="btn btn-primary btn-lg" id = "bts2200" th:href="@{/cadini/abrecadastroinicial/S2200}" role="button">Servidores Ativos (S2200 e S2300)</a></p>
+             </div>
+             <div class="form-group col-md-3"> 
+            	<a class="btn btn-info btn-lg"        th:href="@{/cadinativos/abrecadastroinicial/S2400}"       role="button">Inativos (S2400 e S2410)</a></p>
+             </div>
+             <div class="form-group col-md-3"> 
+            	<a class="btn btn-info btn-lg"        th:href="@{/cadinativos/abrecadastroinicial/S2400}"       role="button">Pensionistas (S2410)</a></p>
+             </div>
+           </div>
+          
+         </div>
+<p>
+     
+    </div>
+        </div>
+ 
+</div>
+      
+
+</section>
+	
+ </main>
+
+	<div class="card-footer  text-success bg-outline  text-center">
+		<h5>&copy; Gestão do Sistema: COREF / DEPES.</h5>
+	</div>
+
+
+
+
+
+	<!-- Bootstrap core JavaScript
+    ================================================== -->
+	<!-- Placed at the end of the document so the pages load faster -->
+
+	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+		integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+		crossorigin="anonymous"></script>
+	<script
+		src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
+		integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+		crossorigin="anonymous"></script>
+	<script
+		src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
+		integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+		crossorigin="anonymous"></script>
+
+	
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,34 @@
+package br.gov.camara.esocial.repository;
+
+
+import java.time.LocalDate;
+import java.util.List;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.stereotype.Repository;
+
+import br.gov.camara.esocial.model.SigPessoaFisica;
+
+
+
+
+@Repository
+public interface SigPessoaFisicaRepository extends JpaRepository<SigPessoaFisica, Long> {
+
+	@Query("select pessoafisica from SigPessoaFisica pessoafisica where ideobjeto = ?1 ")
+	SigPessoaFisica findByIdeobjeto(long idepessoafisica);
+	
+	//@Query("select pessoafisica from SigPessoaFisica pessoafisica  "+
+	//"WHERE  ((TRUNC(DATCRIACAO) BETWEEN trunc(?1)  AND trunc(?2) ) OR  "+
+	//"(TRUNC(DATULTIMAALTERACAO) BETWEEN trunc(?3)  AND trunc(?4) )) ")
+	//List<SigPessoaFisica> findByDatLancamento(LocalDate data1,LocalDate data2,LocalDate data3,LocalDate data4);
+	
+	@Query("select pessoafisica from SigPessoaFisica pessoafisica  "+
+			"WHERE  ((TRUNC(pessoafisica.datcriacao) BETWEEN trunc(?1)  AND trunc(?2)) or "+
+			" (TRUNC(pessoafisica.datultimaalteracao) BETWEEN trunc(?3)  AND trunc(?4))) order by pessoafisica.nompessoafisica")
+	List<SigPessoaFisica> findByDatLancamento(LocalDate data1,LocalDate data2,LocalDate data3,LocalDate data4);
+
+			//List<SigPessoaFisica> findByDatLancamento(LocalDate data1,LocalDate data2);
+
+}

@@ -1,0 +1,12 @@
+package br.gov.camara.esocial.repository.sigesp;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+
+
+import br.gov.camara.esocial.model.sigesp.SigHistoricoBeneficioPC;
+
+@Repository
+public interface SigHistoricoBeneficioPCRepository extends JpaRepository<SigHistoricoBeneficioPC, Long>{
+
+}

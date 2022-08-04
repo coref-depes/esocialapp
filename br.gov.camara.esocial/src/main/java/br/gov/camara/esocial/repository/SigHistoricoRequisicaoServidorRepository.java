@@ -1,0 +1,31 @@
+package br.gov.camara.esocial.repository;
+
+
+import java.time.LocalDate;
+import java.util.List;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.stereotype.Repository;
+
+import br.gov.camara.esocial.model.SigHistoricoRequisicaoServidor;
+
+
+
+
+
+
+	
+
+@Repository
+public interface SigHistoricoRequisicaoServidorRepository extends JpaRepository<SigHistoricoRequisicaoServidor, Long> {
+
+	@Query("select historicorequisicao from SigHistoricoRequisicaoServidor historicorequisicao  "+
+			" where historicorequisicao.servidor.numponto = ?1   " +
+			"and 	((historicorequisicao.datfimhistorico is null) or (historicorequisicao.datfimhistorico  >= ?2) )	 "+
+			"and	historicorequisicao.datcancelamento is null	 ")
+	List<SigHistoricoRequisicaoServidor> findByRequisitado(int numponto, LocalDate datfim);
+
+
+	
+}

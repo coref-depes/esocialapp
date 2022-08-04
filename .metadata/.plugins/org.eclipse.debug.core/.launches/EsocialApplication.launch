@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<launchConfiguration type="org.eclipse.jdt.launching.localJavaApplication">
+    <listAttribute key="org.eclipse.debug.core.MAPPED_RESOURCE_PATHS">
+        <listEntry value="/br.gov.camara.esocial/src/main/java/br/gov/camara/esocial/EsocialApplication.java"/>
+    </listAttribute>
+    <listAttribute key="org.eclipse.debug.core.MAPPED_RESOURCE_TYPES">
+        <listEntry value="1"/>
+    </listAttribute>
+    <mapAttribute key="org.eclipse.debug.core.environmentVariables">
+        <mapEntry key="RHESOCIALINTEGRACAO_URL" value="https://rh-tes.camara.leg.br/rh-esocialcd-integracao-ws/"/>
+        <mapEntry key="RHSIGESPDB_PWD" value="voupedir2013"/>
+        <mapEntry key="RHSIGESPDB_URL" value="jdbc:oracle:thin:@//oltphom1.redecamara.camara.gov.br:1521/oltphom.camara.gov.br?useTimezone=true&amp;serverTimezone=UTC"/>
+        <mapEntry key="RHSIGESPDB_USR" value="USER_FOLHACD"/>
+    </mapAttribute>
+    <booleanAttribute key="org.eclipse.jdt.launching.ATTR_ATTR_USE_ARGFILE" value="false"/>
+    <booleanAttribute key="org.eclipse.jdt.launching.ATTR_EXCLUDE_TEST_CODE" value="true"/>
+    <booleanAttribute key="org.eclipse.jdt.launching.ATTR_SHOW_CODEDETAILS_IN_EXCEPTION_MESSAGES" value="true"/>
+    <booleanAttribute key="org.eclipse.jdt.launching.ATTR_USE_CLASSPATH_ONLY_JAR" value="false"/>
+    <stringAttribute key="org.eclipse.jdt.launching.CLASSPATH_PROVIDER" value="org.eclipse.m2e.launchconfig.classpathProvider"/>
+    <stringAttribute key="org.eclipse.jdt.launching.MAIN_TYPE" value="br.gov.camara.esocial.EsocialApplication"/>
+    <stringAttribute key="org.eclipse.jdt.launching.MODULE_NAME" value="br.gov.camara.esocial"/>
+    <stringAttribute key="org.eclipse.jdt.launching.PROJECT_ATTR" value="br.gov.camara.esocial"/>
+    <stringAttribute key="org.eclipse.jdt.launching.SOURCE_PATH_PROVIDER" value="org.eclipse.m2e.launchconfig.sourcepathProvider"/>
+</launchConfiguration>

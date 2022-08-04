@@ -1,0 +1,57 @@
+package br.gov.camara.esocial.config;
+
+import com.zaxxer.hikari.HikariDataSource;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.boot.jdbc.DataSourceBuilder;
+import org.springframework.boot.orm.jpa.EntityManagerFactoryBuilder;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+
+import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
+import org.springframework.orm.jpa.JpaTransactionManager;
+import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
+import org.springframework.transaction.PlatformTransactionManager;
+import org.springframework.transaction.annotation.EnableTransactionManagement;
+import org.springframework.context.annotation.Primary;
+import javax.persistence.EntityManagerFactory;
+import javax.sql.DataSource;
+
+
+@Configuration
+@EnableTransactionManagement
+@EnableJpaRepositories(
+    entityManagerFactoryRef = "sigespEntityManagerFactory",
+    transactionManagerRef = "sigespTransactionManager",
+    basePackages = "br.gov.camara.esocial.repository.sigesp")
+public class SigespDataSourceConfig {
+	
+	
+	@Primary
+    @Bean(name = "sigespDataSource")
+    @ConfigurationProperties(prefix = "sigesp.datasource")
+    public HikariDataSource sipDataSource() {
+        return DataSourceBuilder.create()
+                                .type(HikariDataSource.class)
+                                .build();
+    }
+	
+	
+	 @Primary
+	    @Bean(name = "sigespEntityManagerFactory")
+	    public LocalContainerEntityManagerFactoryBean mysqlEntityManagerFactory(EntityManagerFactoryBuilder builder, @Qualifier("sigespDataSource") DataSource dataSource) {
+	        return builder.dataSource(dataSource)
+	                      .packages("br.gov.camara.esocial.model")
+	                   //   .persistenceUnit("sipPU")
+	                      .build();
+	}
+	 
+	 @Primary
+		@Bean(name = "sigespTransactionManager")
+	    public PlatformTransactionManager transactionManager(@Qualifier("sigespEntityManagerFactory") EntityManagerFactory entityManagerFactory) {
+	        return new JpaTransactionManager(entityManagerFactory);
+	    }
+
+		 
+
+}

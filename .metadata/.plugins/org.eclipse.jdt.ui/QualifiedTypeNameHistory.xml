@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<qualifiedTypeNameHistroy>
+    <fullyQualifiedTypeName name="br.gov.camara.esocial.dto.ChaveEventoDTO"/>
+    <fullyQualifiedTypeName name="lombok.NoArgsConstructor"/>
+    <fullyQualifiedTypeName name="br.gov.camara.esocial.model.sigesp.SigBeneficiarioPensaoCivil"/>
+    <fullyQualifiedTypeName name="br.gov.camara.esocial.repository.sigesp.SigHistoricoBeneficioPCRepository"/>
+    <fullyQualifiedTypeName name="br.gov.camara.esocial.model.sigesp.SigHistoricoBeneficioPC"/>
+    <fullyQualifiedTypeName name="br.gov.camara.esocial.service.SigHistoricoBeneficioPCService"/>
+    <fullyQualifiedTypeName name="java.util.ArrayList"/>
+    <fullyQualifiedTypeName name="br.gov.camara.esocial.model.SigHistoricoBeneficioPC"/>
+    <fullyQualifiedTypeName name="br.gov.camara.esocial.repository.SigGrupoRepository"/>
+    <fullyQualifiedTypeName name="org.springframework.stereotype.Repository"/>
+    <fullyQualifiedTypeName name="org.springframework.data.jpa.repository.JpaRepository"/>
+    <fullyQualifiedTypeName name="org.springframework.data.jpa.repository.Query"/>
+    <fullyQualifiedTypeName name="org.springframework.stereotype.Service"/>
+    <fullyQualifiedTypeName name="java.beans.JavaBean"/>
+    <fullyQualifiedTypeName name="org.springframework.beans.factory.annotation.Value"/>
+</qualifiedTypeNameHistroy>

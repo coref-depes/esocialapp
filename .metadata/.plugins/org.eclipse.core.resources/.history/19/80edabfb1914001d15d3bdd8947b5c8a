@@ -1,0 +1,19 @@
+server.port 8081
+spring.resources.add-mappings=true
+spring.resources.static-locations=classpath:/META-INF/resources/,classpath:/resources/,classpath:/static/
+spring.thymeleaf.mode=html
+spring.thymeleaf.cache=true
+spring.devtools.add-properties=	true
+
+
+#sigesp
+#sigesp.datasource.jdbcUrl=jdbc:oracle:thin:@//oltphom1.redecamara.camara.gov.br:1521/oltphom.camara.gov.br?useTimezone=true&serverTimezone=UTC
+#sigesp.datasource.username=USER_FOLHACD
+#sigesp.datasource.password=voupedir2013
+#sigesp.datasource.driver-class-name=oracle.jdbc.OracleDriver
+
+#sigesp
+spring.datasource.url=jdbc:oracle:thin:@//oltphom1.redecamara.camara.gov.br:1521/oltphom.camara.gov.br?useTimezone=true&serverTimezone=UTC
+spring.datasource.username=user_folhacd
+spring.datasource.password=voupedir2013
+spring.datasource.driver-class-name=oracle.jdbc.OracleDriver

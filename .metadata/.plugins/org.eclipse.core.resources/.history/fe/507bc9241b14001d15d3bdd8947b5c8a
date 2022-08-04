@@ -1,0 +1,22 @@
+server.port=${SERVER_PORT}
+spring.resources.add-mappings=true
+spring.resources.static-locations=classpath:/META-INF/resources/,classpath:/resources/,classpath:/static/
+spring.thymeleaf.mode=html
+spring.thymeleaf.cache=true
+spring.devtools.add-properties=	true
+
+
+
+
+#sigesp
+sigesp.datasource.jdbcUrl=${RHSIGESPDB_URL}
+sigesp.datasource.username=${RHSIGESPDB_USR}
+sigesp.datasource.password=${RHSIGESPDB_PWD}
+sigesp.datasource.driver-class-name=oracle.jdbc.OracleDriver
+
+
+
+app.esocial.url.integracao=${RHESOCIALINTEGRACAO_URL}
+
+
+

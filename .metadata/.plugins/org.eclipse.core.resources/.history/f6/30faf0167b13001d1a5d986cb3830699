@@ -1,0 +1,41 @@
+FROM dockerhub.camara.leg.br/infra/openjdk-apm:8u212-jre-alpine-apm-1.17.0.rev1
+
+LABEL br.leg.camara.secao=SIGESP
+
+# configuracao de variaveis de ambiente
+# ENV TZ=America/Sao_Paulo
+# ENV LANG=pt_BR.UTF-8
+# ENV LC_ALL=pt_BR.UTF-8
+
+# copia do certificado da Camara
+# COPY src/main/certificados/camaragovbr.crt /usr/local/share/ca-certificates/
+
+# RUN apk --update add tzdata \
+#    && cp /usr/share/zoneinfo/$TZ /etc/localtime \
+#    && echo $TZ > /etc/timezone \
+#    && update-ca-certificates
+
+# instalacao de fontes para o Jasper
+# RUN apk add fontconfig ttf-dejavu ttf-liberation
+
+RUN mkdir -p /app/config
+WORKDIR /app
+
+# diretorio onde pode ser incluido application.properties especifico sobrescrevendo propriedades default
+VOLUME /app/config
+# workdir do tomcat
+VOLUME /tmp
+
+ENV JAVA_OPTS=""
+
+#Usado para aplicacoes com APM
+ENV SERVICE_NAME="rh-esocialcd-esocialapp"
+
+#ENTRYPOINT [ "/app/docker-entrypoint.sh" ]
+#CMD [ "java $JAVA_OPTS -Djava.security.egd=file:/dev/./urandom -jar /app/rh-esocialcd-esocialapp.jar" ]
+
+# para fazer debug remoto, adicionar ao JAVA_OPTS o seguinte: -agentlib:jdwp=transport=dt_socket,address=5005,server=y,suspend=n
+ENTRYPOINT exec java $JAVA_OPTS -Djava.security.egd=file:/dev/./urandom -jar /app/rh-esocialcd-esocialapp.jar
+
+#Deixado por ultimo para otimizar imagem
+COPY target/rh-esocialcd-esocialapp.jar .

@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+
+
+
+<html 
+ lang="pt" xmlns="http://www.w3.org/1999/xhtml" 
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" >
+
+<head>
+	<title>Sipes</title>
+	<meta charset="utf-8">
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    
+  
+    <style type = "text/css">   
+    
+    </style>		
+		
+		<!-- Bootstrap core CSS -->
+	<link th:href="@{/css/bootstrap.min.css}" rel="stylesheet" />	
+	<!-- Custom styles for this template -->
+	<link th:href="@{/css/estilosMenu.css}" rel="stylesheet" />
+	
+</head>
+
+
+<body>
+
+<header>
+	<div th:insert="fragments/titulo :: divtitulo"></div>
+</header>
+
+<div class="card-body  col-md-10 pt-0 mt-0" > 	
+<form  th:object="${chave}"  th:action="@{/cadini/listacadastroinicial}"   method="post" >
+ <div class="card  " style="border: thin solid black">
+<p>
+
+
+<div class="row col-md-8">
+    
+ <div class="form-group col-md-1">   
+<label for="js-grupo">Grupo</label>
+ </div>
+ <div class="form-group col-md-4">
+<select id="js-grupo" class="form-control " th:field="${grupo.codobjeto}">  >                        
+<option th:each="grupo: ${grupos}" th:value="${grupo.codobjeto}" th:text="${grupo.texdescricao}" ></option>
+</select>
+</div>
+    	<input type="hidden"  id = "edttipchave"  th:value= "${chave.codtipochave}"  >
+  		<div class="form-group col-md-4">
+		<label for="edtdatbase"><strong>Data base</strong></label>	
+
+		<input type="date"  id = "edtdatbase"   th:value= "${chave.datreferencia}" >
+	
+		</div>
+	
+	<div class="form-group col-mb-2">		   	
+
+  			<button th:id="btn-importa" class="btn btn-primary" type="submit">Selecionar</button>
+	</div>
+	<div class="form-group col-sm-2">		
+ 		   		<a th:href="@{/}" class="btn btn-primary">Voltar</a>	
+ 	</div>    
+	
+
+	
+</div>
+</div>
+</form>
+   
+</div>
+<div class="card-block  col-md-12 pt-0.2 mt-0.5"  style="background-color: #e3f2fd;" th:if="${#strings.equalsIgnoreCase(msgvalidacao, 'Evento Localizado')}">
+
+ <form  th:object="${historicogrupo}" th:action="@{/cadini/geracadastroinicial}"  method="POST">
+
+ <div class="card  " style="border: thin solid black">
+	<div class="form-group col-mb-2">		   	
+		<button th:id="btn-importa" class="btn btn-primary" type="submit">Gerar chaves</button>
+	</div>
+	<input type="hidden"  id = "edtcodgrupo"  th:field = "${grupo.codobjeto}">
+	<input type="hidden"  id = "edtdatreferencia"  th:value= "${chave.datreferencia}" >
+	<input type="hidden"  id = "edttipchave"  th:value = "${chave.codtipochave}" >
+ <table class="table table-striped table-bordered   " id ="js-lista">
+
+			
+			<thead class="thead-light">
+               <tr  id ="js-cabec-lista"  >
+               	     <th>Grupo</th>
+               	     <th>C P F</th>
+               	     <th>Nome</th>
+               	     <th>Ponto</th>
+  	                 <th>Exercício</th>             	     
+	                 <th>Dispensa</th>	                 
+	           </tr>
+	        </thead>
+	        <tbody>
+	                              
+	            <tr th:each="hist : ${historicogrupo}">
+	              	<td th:text="${hist.grupo.codobjeto}"></td>
+	              	<td th:text="${hist.servidor.pessoafisica.numcpf}"></td>
+	              	<td th:text="${hist.servidor.pessoafisica.nompessoafisica}"></td>
+	    			<td th:text="${hist.servidor.numponto}"></td>         	
+	              	<td th:text="${#temporals.format(hist.datiniciohistorico, 'dd/MM/yyyy')}"></td> 		              	
+					<td th:text="${#temporals.format(hist.datfimhistorico, 'dd/MM/yyyy')}"></td> 
+				</tr>
+			 </tbody>
+		</table>	
+			
+</div>
+ </form>
+</div>
+    
+  </body>
+</html>

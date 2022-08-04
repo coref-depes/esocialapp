@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+
+
+<head>
+<title>Sipes</title>
+
+<meta charset="UTF-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+<meta name="description" content="" />
+<meta name="author" content="" />
+<link rel="icon" href="/image/iconeCD.png" />
+
+<!-- Bootstrap core CSS -->
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+	integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+	crossorigin="anonymous">
+
+<link href="/webjars/open-iconic/font/css/open-iconic-bootstrap.min.css"
+	rel="stylesheet" />
+
+
+<!-- Custom styles for this template -->
+
+
+
+</head>
+
+<body>
+
+	<div col-md-10 pt-0 mt-0  th:fragment="navbarmenugrupo1"   >
+
+		<nav class="navbar navbar-expand-lg navbar-light bg-light  ">
+			
+		<ul class="navbar-nav col-md-12">
+		
+		<li class="nav-item dropdown"  >
+			<a class="dropdown-item  btn-outline-primary" th:href="@{/}" 
+						role="button"> <strong>Voltar</strong>
+			</a>
+		</li>
+		
+			<li class="nav-item dropdown"  >
+		
+			<a class="nav-link dropdown-toggle " href="#" id="navbareventospordata"
+						role="button" data-toggle="dropdown" aria-haspopup="true"
+						aria-expanded="false"> <strong>Grupo 1 Geração de Eventos do cadastro Inicial</strong>
+			</a>
+			<div class="dropdown-menu" aria-labelledby="navbareventospordata">
+			<a class="dropdown-item  btn-outline-primary " th:href="@{/cadini/abrecadastroinicial/1}"> <strong>Evento S2200 inicial-</strong></a>
+			<a class="dropdown-item  btn-outline-primary " th:href="@{/cadini/abrecadastroinicial2/1}"> <strong>Evento teste-</strong></a>
+		
+			</div>
+			</li>
+
+		</ul>
+
+			</nav>
+
+		</div>
+
+
+
+	<div col-md-10 pt-0 mt-0  th:fragment="navbarmenugrupo2"   >
+
+		<nav class="navbar navbar-expand-lg navbar-light bg-light  ">
+			
+		<ul class="navbar-nav col-md-12">
+		
+		<li class="nav-item dropdown"  >
+			<a class="dropdown-item  btn-outline-primary" th:href="@{/}" 
+						role="button"> <strong>Voltar</strong>
+			</a>
+		</li>
+		<li class="nav-item dropdown"  >
+			<a class="nav-link dropdown-toggle " href="#" id="navbartabelas"
+						role="button" data-toggle="dropdown" aria-haspopup="true"
+						aria-expanded="false"> <strong>CONSULTAS</strong>
+			</a>
+			
+			<div class="dropdown-menu" aria-labelledby="navbartabelas">
+				<a class="dropdown-item  btn-outline-primary " th:href="@{/consulta/abreconsultaporponto}"> <strong>Consulta ...</strong></a> 
+				<a class="dropdown-item  btn-outline-primary " th:href="@{/tipoevento/listar}"> <strong>Tipos de Eventos</strong></a> 
+				<a class="dropdown-item  btn-outline-primary " th:href="@{/consulta/abreconsultachaveporevento}"> <strong>Consulta Chaves po Tipos de Eventos</strong></a> 
+				<a class="dropdown-item  btn-outline-primary " th:href="@{/consulta/abreconsultaporponto}"> <strong>Consulta ...</strong></a> 
+				</div>
+		</li>
+			
+		<li class="nav-item dropdown"  >
+		
+			<a class="nav-link dropdown-toggle " href="#" id="navbareventoporponto"
+						role="button" data-toggle="dropdown" aria-haspopup="true"
+						aria-expanded="false"> <strong>Geração de Eventos por ponto</strong>
+			</a>
+			<div class="dropdown-menu" aria-labelledby="navbareventoporponto">
+				<a class="dropdown-item  btn-outline-primary " th:href="@{/chaveevento/abreconsultaporponto}"> <strong>Gera Evento por Ponto</strong></a> 
+			</div>
+		</li>
+		<li class="nav-item dropdown"  >
+		
+			<a class="nav-link dropdown-toggle " href="#" id="navbareventospordata"
+						role="button" data-toggle="dropdown" aria-haspopup="true"
+						aria-expanded="false"> <strong>Geração de Eventos por período</strong>
+			</a>
+			<div class="dropdown-menu" aria-labelledby="navbareventospordata">			 
+				<a class="dropdown-item  btn-outline-primary " th:href="@{/g5chaveevento/abretelacadastroinicial}">   <strong>Evento S2200 inicial</strong></a> 
+				<a class="dropdown-item  btn-outline-primary " th:href="@{/chaveevento/abretelanomeacaoporperiodo}">   <strong>Evento S2200 por Período</strong></a> 
+				<a class="dropdown-item  btn-outline-primary " th:href="@{/chaveevento/abretelaexoneracaoporperiodo}"> <strong>Evento S2299 por Período</strong></a> 	
+				<a class="dropdown-item  btn-outline-primary " th:href="@{/chaveevento/abretelaafastamentoporinicio}">   <strong>Evento S2230 Início</strong></a> 	
+				<a class="dropdown-item  btn-outline-primary " th:href="@{/chaveevento/abretelaafastamentoportermino}">   <strong>Evento S2230 Término</strong></a> 
+			</div>
+			</li>
+			
+
+		</ul>
+
+			</nav>
+
+		</div>
+
+
+	<div col-md-10 pt-0 mt-0  th:fragment="navbarmenugrupo5"   >
+
+		<nav class="navbar navbar-expand-lg navbar-light bg-light  ">
+			
+		<ul class="navbar-nav col-md-12">
+		
+		<li class="nav-item dropdown"  >
+			<a class="dropdown-item  btn-outline-primary" th:href="@{/}" 
+						role="button"> <strong>Voltar</strong>
+			</a>
+		</li>
+		
+			<li class="nav-item dropdown"  >
+		
+			<a class="nav-link dropdown-toggle " href="#" id="navbareventospordata"
+						role="button" data-toggle="dropdown" aria-haspopup="true"
+						aria-expanded="false"> <strong>Grupo 5 Geração de Eventos do cadastro Inicial</strong>
+			</a>
+			<div class="dropdown-menu" aria-labelledby="navbareventospordata">
+			<a class="dropdown-item  btn-outline-primary " th:href="@{/g5chaveevento/abretelacadastroinicial}"> <strong>Evento S2200 inicial</strong></a>
+			</div>
+			</li>
+
+		</ul>
+
+			</nav>
+
+		</div>
+
+
+		<div col-md-10 pt-0 mt-0  th:fragment="navbarmenugrupo6"   >
+
+		<nav class="navbar navbar-expand-lg navbar-light bg-light  ">
+			
+		<ul class="navbar-nav col-md-12">
+		
+		<li class="nav-item dropdown"  >
+			<a class="dropdown-item  btn-outline-primary" th:href="@{/}" 
+						role="button"> <strong>Voltar</strong>
+			</a>
+		</li>
+		<li class="nav-item dropdown"  >
+			<a class="nav-link dropdown-toggle " href="#" id="navbartabelas"
+						role="button" data-toggle="dropdown" aria-haspopup="true"
+						aria-expanded="false"> <strong>CONSULTAS</strong>
+			</a>
+			
+			<div class="dropdown-menu" aria-labelledby="navbartabelas">
+				<a class="dropdown-item  btn-outline-primary " th:href="@{/consulta/abreconsultaporponto}"> <strong>Consulta ...</strong></a> 
+				<a class="dropdown-item  btn-outline-primary " th:href="@{/tipoevento/listar}"> <strong>Tipos de Eventos</strong></a> 
+				<a class="dropdown-item  btn-outline-primary " th:href="@{/consulta/abreconsultachaveporevento}"> <strong>Consulta Chaves po Tipos de Eventos</strong></a> 
+				<a class="dropdown-item  btn-outline-primary " th:href="@{/consulta/abreconsultaporponto}"> <strong>Consulta ...</strong></a> 
+				</div>
+		</li>
+			
+		
+			<li class="nav-item dropdown"  >
+		
+			<a class="nav-link dropdown-toggle " href="#" id="navbareventospordata"
+						role="button" data-toggle="dropdown" aria-haspopup="true"
+						aria-expanded="false"> <strong>Grupo 6 Geração de Eventos por período</strong>
+			</a>
+			<div class="dropdown-menu" aria-labelledby="navbareventospordata">
+				<a class="dropdown-item  btn-outline-primary " th:href="@{/g5chaveevento/abretelacadastroinicial}">   <strong>Evento S2200 inicial</strong></a> 
+			</div>
+			</li>
+
+		</ul>
+
+			</nav>
+
+		</div>
+
+
+
+
+
+	<div class="card-footer  text-success bg-outline  text-center">
+		<h5>&copy; Gestão do Sistema: COREF / DEPES.</h5>
+	</div>
+
+
+
+
+
+	<!-- Bootstrap core JavaScript
+    ================================================== -->
+	<!-- Placed at the end of the document so the pages load faster -->
+
+	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+		integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+		crossorigin="anonymous"></script>
+	<script
+		src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
+		integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+		crossorigin="anonymous"></script>
+	<script
+		src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
+		integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+		crossorigin="anonymous"></script>
+
+	<script type="text/javascript">
+	$(function() {
+	    $('[data-toggle="popover"]').popover();
+	});
+
+	$(document).ready(function() {
+	    $(".navbar-toggle").click(function() {
+		$(".sidebar").toggleClass("sidebar-open");
+	    })
+	});
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,60 @@
+package br.gov.camara.esocial.service;
+
+
+import java.util.ArrayList;
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import br.gov.camara.esocial.model.SigGrupo;
+import br.gov.camara.esocial.repository.sigesp.SigGrupoRepository;
+
+@Service
+public class GrupoService {
+	
+	@Autowired
+	private SigGrupoRepository grupodao;
+	
+	SigGrupo  grupo;	
+	List<SigGrupo>  grupos;
+	public List<SigGrupo> grupos( String codtipochave){
+		grupos = new ArrayList<SigGrupo>();		
+		switch (codtipochave) {
+        case "S2200":
+        	grupos = grupodao.findGruposEstatutarios();
+        	break;
+        case "S2230":
+        	grupos = grupodao.findGruposAfastamento();
+        	break;     
+        case "S2300":
+        	grupos = grupodao.findGruposSemVinculo();
+        	break;      
+ 	
+        case "S2400":
+        	grupos = grupodao.findGruposInativos();
+        	break;      
+
+        }
+		return grupos;		
+	}
+	
+	public List<SigGrupo> gruposAtivos(){
+		grupos = new ArrayList<SigGrupo>();		
+		 grupos = grupodao.findGruposAtivos();       	
+		return grupos;		
+	}
+	
+	public List<SigGrupo> gruposInativos(){
+		grupos = new ArrayList<SigGrupo>();		
+		 grupos = grupodao.findGruposInativos();       	
+		return grupos;		
+	}
+	
+	public List<SigGrupo> gruposPensionistas(){
+		grupos = new ArrayList<SigGrupo>();		
+		 grupos = grupodao.findGruposPensionistas();      	
+		return grupos;		
+	}
+	
+}

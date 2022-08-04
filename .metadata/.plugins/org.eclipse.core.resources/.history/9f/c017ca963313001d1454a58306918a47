@@ -1,0 +1,5 @@
+package br.gov.camara.esocial.model.sigesp;
+
+public class SigHistoricoBeneficioPC {
+
+}

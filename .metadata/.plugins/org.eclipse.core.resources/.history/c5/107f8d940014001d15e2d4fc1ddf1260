@@ -1,0 +1,29 @@
+package br.gov.camara.esocial.repository;
+
+import java.time.LocalDate;
+import java.util.List;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+
+import br.gov.camara.esocial.model.SigAfastamento;
+
+@Reposytory
+public interface AfastamentoRepository  extends JpaRepository<SigAfastamento, Long>{
+	
+
+	
+	
+	@Query("select afastamento from SigAfastamento  afastamento   "+
+		"where ( (trunc(serveventohist.datiniciohistorico) between trunc(?1) and trunc(?2)  )"+
+			"or (trunc(serveventohist.datfimhistorico) between trunc(?1) and trunc(?2) )  ) "+
+		//"where trunc(serveventohist.datfimhistorico) between trunc(?1) and trunc(?2)  "+
+			"and serveventohist.datcancelamento is null "+
+			"and  serveventohist.servidor.grupo.codobjeto  in (1) "+
+			"and serveventohist.tabelaitem.codobjeto  IN ('1','2','5','6','8','9','10','15','17','18','21','22','22','23','26','29','30','31','34','35','36','36','36','40','46','49','49','50','51','53','54','72','73','76','83','84','86','86','87','99','100','102','108','112','115','117','118','118','118','119','120','122','123','124','125','128','129','134','138','140','143','151','152','153','704','9002','9003','9004','9005','9008','50001','50002','50003','50004','50005','50006','50007','50013','50014','50015','50018','50020','50022','50023','50024','50025','50026','50027','50030','50033','50034','50035','50036','FERIA1','FERIA1E','FERIA2E','FERIASN') "+
+			"order by serveventohist.servidor.numponto, serveventohist.datiniciohistorico")
+			List<SigAfastamento>  find_PorPeriodo(LocalDate inicio, LocalDate fim);
+	
+
+
+}

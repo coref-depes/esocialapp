@@ -1,0 +1,218 @@
+package br.gov.camara.esocial.service;
+
+import java.text.DateFormat;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.Date;
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.MediaType;
+import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.client.RestTemplate;
+import org.springframework.web.servlet.ModelAndView;
+
+import com.google.gson.Gson;
+
+import br.gov.camara.esocial.dto.AtributoCadini;
+import br.gov.camara.esocial.dto.AtributoEventoNP;
+
+import br.gov.camara.esocial.dto.ChaveDTOCadini;
+import br.gov.camara.esocial.dto.ChaveDTOEventoNP;
+import br.gov.camara.esocial.dto.ChaveEventoDTO;
+import br.gov.camara.esocial.model.sigesp.SigAfastamento;
+import br.gov.camara.esocial.model.sigesp.SigGrupo;
+import br.gov.camara.esocial.model.sigesp.SigHistoricoRequisicaoServidor;
+
+import br.gov.camara.esocial.model.sigesp.SigHistoricoServidorCargoSP;
+import br.gov.camara.esocial.model.sigesp.SigHistoricoServidorGrupo;
+import br.gov.camara.esocial.model.sigesp.SigHistoricoServidorRegimePrev;
+
+
+
+@Service
+public class ChaveEventoService {
+	
+	@Autowired
+	private AfastamentoService afastamentoservice;
+
+	
+	@Autowired
+	private SigHistoricoServidorRegimePrevService regimeprevservice;
+
+	@Autowired
+	private HistoricoServidorCargoSpService historicocargoservice;
+	
+	private List<SigHistoricoServidorRegimePrev> regimesprev;
+	private List<SigHistoricoServidorCargoSP>  historicocargosp;
+
+	
+	private List<SigHistoricoServidorGrupo> historicogrupo;
+	
+	@Autowired
+	private HistoricoServidorGrupoService historicoservgruposervice;
+	
+	
+	List<SigGrupo>  grupos;
+	SigGrupo  grupo;
+	ChaveEventoDTO chave;
+	SigHistoricoServidorGrupo historico;
+
+	List<SigAfastamento>  afastamentos;
+	
+	
+	public static HttpHeaders headersJson() {
+		HttpHeaders headers = new HttpHeaders();	
+	    headers.setContentType(MediaType.APPLICATION_JSON);
+	    headers.setAccept(Collections.singletonList(MediaType.APPLICATION_JSON));
+	    return headers;
+	}
+	
+	
+	public static boolean comparaDataIgual(LocalDate inicio, LocalDate fim) {
+
+        Date date1 = Date.from(inicio.atStartOfDay(ZoneId.systemDefault()).toInstant());
+        Date date2 = Date.from(fim.atStartOfDay(ZoneId.systemDefault()).toInstant());
+       
+        if (date1.equals(date2)) {
+           return true;
+        }else      
+        {return false;
+      
+        }
+}	
+	
+
+	
+
+	
+	DateTimeFormatter formatador = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+	
+	/*
+	private void dormeUmPouco(int segundos) {
+		try {
+			segundos = segundos*1000;
+			Thread.sleep(segundos);
+		} catch (InterruptedException e) {}
+	}	
+	
+	*/
+	
+
+	
+	
+
+	public ChaveDTOCadini CriaChaveCadastroInicial(SigHistoricoServidorGrupo hcc, SigGrupo grupo, ChaveEventoDTO chave) {
+		
+		ChaveDTOCadini chavedto = new ChaveDTOCadini();
+		Gson gson = new Gson();
+		String json ="";
+		regimesprev= new   ArrayList<SigHistoricoServidorRegimePrev>();
+		regimesprev = regimeprevservice.buscaregimeprevidenciario(hcc.getServidor().getNumponto(), chave.getDatreferencia());
+		if ((regimesprev.size() == 0)) {
+			chave.setCodtipochave("S2200");
+		}
+		else {
+			chave.setCodtipochave("S2300");
+		}
+		if (grupo.getCodobjeto().equals("13"))
+		{chave.setCodtipochave("S2300");}
+		
+		
+		chavedto.setTipoChave(chave.getCodtipochave());
+		AtributoCadini atributo = new AtributoCadini();
+		atributo.setPonto(Integer.toString(hcc.getServidor().getNumponto()));
+		atributo.setCpf(hcc.getServidor().getPessoafisica().getNumcpf());
+		atributo.setCodigoGrupo(hcc.getGrupo().getCodobjeto());
+		atributo.setDataReferencia(formatador.format(hcc.getDatiniciohistorico()));
+		//chave.setDatreferencia(LocalDate.of(2017, 03, 01));
+	//	chave.setDatreferencia(LocalDate.of(2020, 11, 22));
+	//	atributo.setDataReferencia(formatador.format(chave.getDatreferencia()));
+		chavedto.setAtributos(atributo);	
+		
+		 json = gson.toJson(chavedto);
+		 
+		 RestTemplate restTemplate = new RestTemplate();
+	
+		String uri = "https://rh-tes.camara.leg.br/rh-esocialcd-integracao-ws/chaves/avulsas";
+		HttpEntity<String> entity = new HttpEntity<String>(json, headersJson());
+		if (chave.getCodtipochave().equalsIgnoreCase("S2200")) {
+		entity = restTemplate.postForEntity(uri, entity, String.class);
+
+		}
+		  return chavedto;  
+	
+	}
+	
+	
+
+	public ChaveDTOCadini CriaChaveCadastroInicialInativos(SigHistoricoServidorGrupo hcc, SigGrupo grupo, ChaveEventoDTO chave) {
+		
+		ChaveDTOCadini chavedto = new ChaveDTOCadini();
+		Gson gson = new Gson();
+		String json ="";
+		
+		
+		chavedto.setTipoChave("S2410");
+		AtributoCadini atributo = new AtributoCadini();
+		
+		atributo.setPonto(Integer.toString(hcc.getServidor().getNumponto()));
+		atributo.setCpf(hcc.getServidor().getPessoafisica().getNumcpf());
+		atributo.setCodigoGrupo(hcc.getGrupo().getCodobjeto());
+		atributo.setDataReferencia(formatador.format(hcc.getDatiniciohistorico()));
+
+		chavedto.setAtributos(atributo);	
+	
+		
+		 json = gson.toJson(chavedto);
+		 System.out.println(json);
+		 
+		 RestTemplate restTemplate = new RestTemplate();		
+	 	String uri = "https://rh-tes.camara.leg.br/rh-esocialcd-integracao-ws/chaves/avulsas";
+		HttpEntity<String> entity = new HttpEntity<String>(json, headersJson());	
+		entity = restTemplate.postForEntity(uri, entity, String.class);
+		chavedto = new ChaveDTOCadini();
+		chavedto.setTipoChave("S2400");
+		atributo = new AtributoCadini();
+		atributo.setPonto(Integer.toString(hcc.getServidor().getNumponto()));
+		atributo.setCpf(hcc.getServidor().getPessoafisica().getNumcpf());
+		atributo.setCodigoGrupo(hcc.getGrupo().getCodobjeto());
+		atributo.setDataReferencia(formatador.format(hcc.getDatiniciohistorico()));
+	
+	//	chave.setDatreferencia(LocalDate.of(2020, 05, 01));
+	//	atributo.setDataReferencia(formatador.format(LocalDate.of(2020, 05, 01)));
+		chavedto.setAtributos(atributo);	
+		
+		 json = gson.toJson(chavedto);
+		 
+		  restTemplate = new RestTemplate();		
+	 	uri = "https://rh-tes.camara.leg.br/rh-esocialcd-integracao-ws/chaves/avulsas";
+		 entity = new HttpEntity<String>(json, headersJson());	
+		entity = restTemplate.postForEntity(uri, entity, String.class);
+		
+		
+		
+		
+		
+		  return chavedto;  
+	
+	}
+	
+	
+	
+
+	
+	
+
+	
+
+	
+}
